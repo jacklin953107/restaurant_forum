@@ -13,3 +13,13 @@
 .restaurant-item .caption{
   padding: 10px;
 }
+
+.nav-center {
+  text-align: center;
+  ul.nav {
+    display: inline-block;
+    li {
+      display: inline;
+    }
+  }
+}
