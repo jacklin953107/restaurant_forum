@@ -4,7 +4,12 @@
         <div class="col-sm-6 col-md-4">
           <div class="restaurant-item">
             <% if restaurant.image?  %>
-                <%= image_tag restaurant.image, width:'300px', class: "img-responsive center-block" %>
+                <!--<% for img_id in 0..7 %>-->
+                    <!--<% if image_path(restaurant.image).include?('/'+img_id.to_s+'.jpg') %>-->
+                        <%= image_tag '/seed_img/'+img_id.to_s+'.jpg', width:'300px', class: "img-responsive center-block" %>
+                    <!--<% end %>-->
+                <!--<% end %>-->
+                <!--<%= image_tag restaurant.image, width:'300px', class: "img-responsive center-block" %>-->
             <% else %>
                 <div style="width:300px;height:180px">
                   <span class="glyphicon glyphicon-picture"></span>
