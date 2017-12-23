@@ -3,6 +3,9 @@
     <% @restaurants.each do |restaurant| %>
         <div class="col-sm-6 col-md-4">
           <div class="restaurant-item">
+            <%= File.exist?('public'+image_path(restaurant.image)) %>
+            <%= File.directory?('public'+image_path(restaurant.image)) %>
+            <%= restaurant.image? %>
             <!--<% if restaurant.image?  %>-->
                 <!--<% for img_id in 0..7 %>-->
                     <!--<% if image_path(restaurant.image).include?('/'+img_id.to_s+'.jpg') %>-->
