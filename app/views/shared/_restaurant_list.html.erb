@@ -7,7 +7,7 @@
                 <!--<% for img_id in 0..7 %>-->
                     <!--<% if image_path(restaurant.image).include?('/'+img_id.to_s+'.jpg') %>-->
                         <!--<%= image_tag('/seed_img/'+img_id.to_s+'.jpg', width:'300px', class: "img-responsive center-block") %>-->
-                        <%= image_tag restaurant.image, width:'300px', class: "img-responsive center-block" %>
+                        <%= show_img(restaurant.image, restaurant.image?)%>
                     <!--<% end %>-->
                 <!--<% end %>-->
                 <!--<%= image_tag restaurant.image, width:'300px', class: "img-responsive center-block" %>-->
