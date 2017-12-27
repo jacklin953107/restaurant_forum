@@ -3,10 +3,10 @@
     <% @restaurants.each do |restaurant| %>
         <div class="col-sm-6 col-md-4">
           <div class="restaurant-item">
-            <%= File.exist?('public'+image_path(restaurant.image)) %>
-            <%= image_path(restaurant.image) %>
+            <!--<%= File.exist?('public'+image_path(restaurant.image)) %>-->
+            <!--<%= image_path(restaurant.image) %>-->
             <!--<%= show_img(restaurant.image) %>-->
-            <%= restaurant.image? %>
+            <!--<%= restaurant.image? %>-->
             <!--<% if restaurant.image?  %>-->
                 <!--<% for img_id in 0..7 %>-->
                     <!--<% if image_path(restaurant.image).include?('/'+img_id.to_s+'.jpg') %>-->
@@ -23,7 +23,6 @@
             <%= show_img(restaurant.image)%>
             <div class="caption">
               <h3><%= link_to restaurant.name, restaurant_path(restaurant) %></h3>
-              <p><%= restaurant.name %></p>
               <p><%= truncate(restaurant.description, length: 80) %></p>
             </div>
           </div>

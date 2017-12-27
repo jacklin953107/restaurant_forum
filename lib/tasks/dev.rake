@@ -18,9 +18,9 @@ namespace :dev do
 
   task fake_user: :environment do
     User.destroy_all
-    User.create(email: "root@admin.com", password: "12345678", role: "admin")
+    User.create(email: "root@admin.com", password: "12345678", role: "admin", name: "root")
     10.times do |i|
-      User.create!(email: FFaker::Internet.email, password: FFaker::Internet.password)
+      User.create!(name: FFaker::Name.name, email: FFaker::Internet.email, password: FFaker::Internet.password)
     end
     puts "Default admin and fake user created!"
   end
