@@ -9,5 +9,5 @@ class User < ApplicationRecord
   def admin?
     self.role == "admin"
   end
-  has_many :comments
+  has_many :comments, dependent: :restrict_with_error
 end
