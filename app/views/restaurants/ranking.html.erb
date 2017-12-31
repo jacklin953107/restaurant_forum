@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
     <ul class="nav nav-tabs">
-      <li role="presentation", class="active">
+      <li role="presentation">
         <%= link_to '首頁', root_path %>
       </li>
       <li role="presentation">
         <%= link_to '最新動態', feeds_restaurants_path %>
       </li>
-      <li role="presentation">
+      <li role="presentation", class="active">
         <%= link_to 'TOP10人氣餐廳', ranking_restaurants_path %>
       </li>
     </ul>
@@ -29,7 +29,7 @@
             </div>
             <div class="col-md-9">
               <h4><%= restaurant.name %>
-              <span class="label label-default">收藏數：<%= restaurant.favorite_count %></span>
+              <span class="label label-default">收藏數：<%= restaurant.favorites_count %></span>
               </h4>
               <p><%= truncate(restaurant.description, length: 200) %></p>
               <div>

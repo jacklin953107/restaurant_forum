@@ -20,7 +20,7 @@ class RestaurantsController < ApplicationController
 		# favorite_count = @restaurant.favorite_count+1
 		# Restaurant.update!(favorite_count: favorite_count)
 		@restaurant.favorites.create!(user: current_user)
-		@restaurant.count_favorites
+		#@restaurant.count_favorites
 		redirect_back(fallback_location: root_path)
 	end
 	def unfavorite
@@ -29,7 +29,7 @@ class RestaurantsController < ApplicationController
 		# Restaurant.update!(favorite_count: favorite_count)
 		favorite = Favorite.where(restaurant: @restaurant, user: current_user)
 		favorite.destroy_all
-		@restaurant.count_favorites
+		#@restaurant.count_favorites
 		redirect_back(fallback_location: root_path)
 	end
 	def like
@@ -46,6 +46,6 @@ class RestaurantsController < ApplicationController
 		redirect_back(fallback_location: root_path)
 	end
 	def ranking
-		@restaurants = Restaurant.order(favorite_count: :desc).limit(10)
+		@restaurants = Restaurant.order(favorites_count: :desc).limit(10)
 	end
 end
