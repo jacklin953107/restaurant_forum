@@ -9,7 +9,9 @@ class Restaurant < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
 
-
+  def is_like?(user)
+    self.liked_users.include?(user)
+  end
   def is_favorite?(user)
     self.favorited_user.include?(user)
   end
