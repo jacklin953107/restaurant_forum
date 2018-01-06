@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only:[:show,:edit,:update]
+  before_action :set_user, only:[:show,:edit,:update, :friend_list]
   def index
     @users = User.all
   end
@@ -30,6 +30,11 @@ class UsersController < ApplicationController
     user.destroy_all
     flash[:alert] = "Friend destroyed"
     redirect_back(fallback_location: users_path)
+  end
+  def friend_list
+    unless @user == current_user
+      redirect_to user_path(@user)
+    end
   end
 
 

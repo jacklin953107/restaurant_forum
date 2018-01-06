@@ -22,6 +22,9 @@ class User < ApplicationRecord
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
 
+  has_many :inverse_friendships, class_name: "Friendship", primary_key: "id", foreign_key: "friend_id"
+  has_many :inverse_friends, through: :inverse_friendships, source: :user
+
   mount_uploader :avatar, AvatarUploader
   def admin?
     self.role == "admin"
@@ -32,5 +35,7 @@ class User < ApplicationRecord
   def friend?(user)
     self.friends.include?(user)
   end
-
+  def all_friends
+    self.friends | self.inverse_friends
+  end
 end

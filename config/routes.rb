@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     member do
       post :friend
       post :unfriend
+      get :friend_list
     end
   end
   resources :followships, only: [:create, :destroy]
