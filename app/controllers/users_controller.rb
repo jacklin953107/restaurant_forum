@@ -18,6 +18,19 @@ class UsersController < ApplicationController
     @user.update(user_params)
     redirect_to user_path(@user)
   end
+  def friend
+    @user = User.find(params[:id])
+    Friendship.create(user:current_user,friend:@user)
+    flash[:notice] = "Successfully friended"
+    redirect_back(fallback_location: users_path)
+  end
+  def unfriend
+    @user = User.find(params[:id])
+    user = Friendship.where(user:current_user,friend:@user)
+    user.destroy_all
+    flash[:alert] = "Friend destroyed"
+    redirect_back(fallback_location: users_path)
+  end
 
 
   private

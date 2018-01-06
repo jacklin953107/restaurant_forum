@@ -34,8 +34,10 @@
             <!--<%= image_tag(user.avatar, class: "img-rounded") %>-->
             <h4><%= user.name %></h4>
           <% end  %>
-
-          <%= render partial: "shared/follow", locals: {user: user} %>
+          <div>
+            <%= render partial: "shared/follow", locals: {user: user} %>
+            <%= render partial: "shared/friend", locals: {user: user} %>
+          </div>
         </div>
     <% end %>
   </div>

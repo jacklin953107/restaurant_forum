@@ -17,7 +17,12 @@ Rails.application.routes.draw do
     end
   end
   resources :categories, only: :show
-  resources :users, only: [:index, :show, :edit, :update]
+  resources :users, only: [:index, :show, :edit, :update] do
+    member do
+      post :friend
+      post :unfriend
+    end
+  end
   resources :followships, only: [:create, :destroy]
   root "restaurants#index"
 
