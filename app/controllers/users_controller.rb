@@ -5,6 +5,9 @@ class UsersController < ApplicationController
   end
   def show
     @commented_restaurants = @user.restaurants
+    @favorited_restaurants = @user.favorited_restaurants
+    @followings = @user.followings
+    @followers = @user.followers
   end
   def edit
     unless @user == current_user

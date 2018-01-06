@@ -10,6 +10,13 @@
         <div class="col-md-9 col-sm-8">
           <h2><%= @user.name %></h2>
           <p><strong><%= @user.email %></strong></p>
+          <!--inline & unstyled 的 list-->
+          <ul class="list-unstyled list-inline">
+            <li><strong><%= @commented_restaurants.count %></strong>已評論餐廳</li>
+            <li><strong><%= @favorited_restaurants.count %></strong>收藏的餐廳</li>
+            <li><strong><%= @followings.count %></strong> followings</li>
+            <li><strong><%= @followers.count %></strong> followers</li>
+          </ul>
           <div><%= simple_format @user.intro %></div>
           <% if @user.email == current_user.email %>
               <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-primary" %>
@@ -17,25 +24,95 @@
         </div>
         <div class="clearfix"></div>
       </div>
+
+
       <br>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title"><strong><%= @commented_restaurants.uniq.count %></strong>已評論餐廳</h3>
+
+
+      <div class="col-md-4">
+        <!--顯示followings的清單，panel包一個list-group-->
+        <div class="panel panel-default">
+          <div class="pnael-heading">
+            <h3 class="panel-title"><strong><%= @followings.count %></strong> followings</h3>
+          </div>
+          <ul class="list-group">
+            <% @followings.each do |following|  %>
+            <li class="list-group-item">
+              <%= link_to user_path(following) do %>
+              <%= image_tag 'http://via.placeholder.com/20x20', height: 30, width: 30, class: "img-circle" %>
+              <%= following.name %>
+              <% end %>
+            </li>
+            <% end %>
+          </ul>
         </div>
-        <div class="panel-body">
-          <% @commented_restaurants.uniq.each do |restaurant|  %>
-              <%= link_to restaurant_path(restaurant) do %>
-                <div class="my-restaurant">
-                  <div>
-                    <!--<%= image_tag restaurant.image, class: "img-responsive img-rounded"  %><br/>-->
-                    <%= show_img(restaurant.image) %>
-                  </div>
-                  <h5><%= restaurant.name %></h5>
+        <!--顯示followers的清單，panel包一個list-group-->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong><%= @followers.count %></strong> followers</h3>
+          </div>
+
+          <ul class="list-group">
+            <% @followers.each do |follower|  %>
+            <li class="list-group-item">
+              <%= link_to user_path(follower) do %>
+              <%= image_tag 'http://via.placeholder.com/20x20', height: 30, width: 30, class: "img-circle" %>
+              <%= follower.name %>
+              <% end %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <!--顯示已評論餐廳的清單，panel包一個panel-body裡面使用row>col的layouts來顯示評論-->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+
+          </div>
+        </div>
+        <!--顯示收藏的餐廳的清單，panel包一個panel-body裡面簡單顯示餐廳圖片和name-->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong><%= @favorited_restaurants.count %></strong> 收藏的餐廳</h3>
+          </div>
+          <div class="panel-body">
+            <% @favorited_restaurants.each do |restaurant| %>
+              <div class="my-restaurant">
+                <div>
+                  <%= link_to restaurant_path(restaurant) do %>
+                    <%= image_tag 'http://via.placeholder.com/80x80', class: "img-responsive img-rounded" %>
+                    <h5><%= restaurant.name %></h5>
+                  <% end %>
                 </div>
-              <% end  %>
-          <% end  %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+      <!--&lt;!&ndash;<div class="panel panel-default">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="panel-heading">&ndash;&gt;-->
+          <!--&lt;!&ndash;<h3 class="panel-title"><strong><%= @commented_restaurants.uniq.count %></strong>已評論餐廳</h3>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="panel-body">&ndash;&gt;-->
+          <!--&lt;!&ndash;<% @commented_restaurants.uniq.each do |restaurant|  %>&ndash;&gt;-->
+              <!--&lt;!&ndash;<%= link_to restaurant_path(restaurant) do %>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="my-restaurant">&ndash;&gt;-->
+                  <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash;<%= image_tag restaurant.image, class: "img-responsive img-rounded"  %><br/>&ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;<%= show_img(restaurant.image) %>&ndash;&gt;-->
+                  <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                  <!--&lt;!&ndash;<h5><%= restaurant.name %></h5>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+              <!--&lt;!&ndash;<% end  %>&ndash;&gt;-->
+          <!--&lt;!&ndash;<% end  %>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
