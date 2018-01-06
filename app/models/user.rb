@@ -15,6 +15,10 @@ class User < ApplicationRecord
 
   has_many :followships, dependent: :destroy
   has_many :followings, through: :followships
+
+  has_many :inverse_followships, class_name: "Favorite", primary_key: "id", foreign_key: "following_id"
+  has_many :followers, through: :inverse_followships, source: :user
+
   mount_uploader :avatar, AvatarUploader
   def admin?
     self.role == "admin"
